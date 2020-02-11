@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * @ClassName:  DataUtil   
@@ -275,11 +276,28 @@ public class DataUtil {
 		Date theDate = parse(theDateStr, "yyyy-MM-dd HH:mm:ss");
 		return getLastDayOfMonth(theDate);
 	}
+	/**
+	 * @Title: getRandomDate   
+	 * @Description: 获取随机时间 
+	 * @param: @param date1
+	 * @param: @param date2
+	 * @param: @return      
+	 * @return: Date      
+	 * @throws
+	 */
+	public static Date getRandomDate(Date date1,Date date2) {
+		Long randomLong = Math.abs(date1.getTime()-date2.getTime());
+		long random = (long) (randomLong*Math.random());
+		long newDateLong = compare(date1, date2)==1?date2.getTime()+random:date1.getTime()+random;
+		return new Date(newDateLong);
+	}
 	
 	
 	public static void main(String[] args) {
-		
-		System.out.println(format(getLastDayOfMonth("2020-02-06 12:33:33"), "yyyy-MM-dd HH:mm:ss"));
+		Date date1= parse("2020-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss");
+		Date date2 = new Date();
+		Date randomDate = getRandomDate(date1, date2);
+		System.out.println(format(randomDate, "yyyy-MM-dd HH:mm:ss"));
 	}
 
 }

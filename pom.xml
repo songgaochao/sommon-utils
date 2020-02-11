@@ -47,4 +47,5 @@
 			</plugin>
 		</plugins>
 	</build>
+	<packaging>ear</packaging>
 </project>
