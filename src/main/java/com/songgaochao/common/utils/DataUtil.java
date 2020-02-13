@@ -292,12 +292,60 @@ public class DataUtil {
 		return new Date(newDateLong);
 	}
 	
+	 //把传入的日期向前 推减24 个小时。 即 1天
+		public static Date subDate(Date date) {
+			//用当前系统时间去实例化一个日历类
+			Calendar c = Calendar.getInstance();
+			//用传入的日期示例化日历类
+			c.setTime(date);
+			
+			//借助日历类，减去1天
+			c.add(Calendar.DATE, -1);
+			
+			return c.getTime();
+			
+		}
+		
+		 /**
+	       * 
+	       * @Title: randomDate 
+	       * @Description: 随机返回一个在start--end 之间的日期
+	       * @param start
+	       * @param end
+	       * @return
+	       * @return: Date
+	       */
+		public static Date randomDate(Date start,Date end) {
+			//获取开始日期的毫秒数
+			long t1 = start.getTime();
+			//获取结束日期的毫秒数
+			long t2 = end.getTime();
+			
+			long t =(long) ((Math.random() * (t2-t1)+1) +t1);
+			
+			return new Date(t);
+		}
+
 	
 	public static void main(String[] args) {
-		Date date1= parse("2020-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss");
+	
+		
+		
+		//随机获取时间
+		Date date1= parse("2010-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss");
 		Date date2 = new Date();
-		Date randomDate = getRandomDate(date1, date2);
+		Date randomDate = getRandomDate(date1, date2);		
 		System.out.println(format(randomDate, "yyyy-MM-dd HH:mm:ss"));
+		
+		//根据时间算年龄
+		int age = getAge("1998-2-2");
+		//System.out.println(age);
+		
+		//根据两个时间算天数
+		int dayNum = getDayNum("2018-3-2", "2019-2-3");
+		//System.out.println(dayNum);
+		
+		
 	}
 
 }
