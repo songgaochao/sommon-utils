@@ -1,6 +1,7 @@
 package com.songgaochao.common.utils;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.util.Random;
 
 /**
@@ -227,6 +228,18 @@ public class StringUtil {
 		// 随机获取1-2个中文
 		String name2 = randomChineseString(RandomUtil.random(1, 3));
 		return name1 + name2;
+	}
+	
+	public static boolean isHttpUrl(String parm) {
+		URL url;
+		try {
+			url = new URL(parm);
+			url.openStream();
+			return true;
+		} catch (Exception e) {
+			System.out.println("连接大不开！！！");
+			}
+		return false;			
 	}
 	
 	
